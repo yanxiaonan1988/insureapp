@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:context="http://www.springframework.org/schema/context" xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.4.1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
+http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/current/mule-xml.xsd
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd">
+    <context:property-placeholder location="classpath:insureApp.properties"/>
+    <spring:beans>
+        <spring:bean id="annotationIntrospectorBean" name="annotationIntrospectorBean" class="org.codehaus.jackson.xc.JaxbAnnotationIntrospector">
+        </spring:bean>
+    	<spring:bean id="objectMapperBean" name="objectMapperBean" class="org.codehaus.jackson.map.ObjectMapper">
+            <spring:property name="annotationIntrospector" ref="annotationIntrospectorBean"/>
+        </spring:bean>
+        
+        <spring:bean id="tiananConnector" name="tiananConnector" class="com.huibao.esb.insureservice.connector.TiananConnector" scope="singleton">
+            <spring:property name="urlString" value="${tianan.insure.url}"/>
+        </spring:bean>
+        
+        <spring:bean id="tiananQueryConnector" name="tiananQueryConnector" class="com.huibao.esb.insureservice.connector.TiananQueryConnector" scope="singleton">
+            <spring:property name="urlString" value="${tianan.query.url}"/>
+        </spring:bean>
+        
+        <spring:bean id="saveNoCarProposalBusinessBean" name="saveNoCarProposalBusinessBean" class="com.huibao.esb.insureservice.business.SaveNoCarProposalBusiness">
+            <spring:property name="connector" ref="tiananConnector"/>
+        </spring:bean>
+        
+        <spring:bean id="doPolicyQueryDetailBusinessBean" name="doPolicyQueryDetailBusinessBean" class="com.huibao.esb.insureservice.business.DoPolicyQueryDetailBusiness">
+            <spring:property name="connector" ref="tiananQueryConnector"/>
+        </spring:bean>
+         
+    </spring:beans>
+    <flow name="insureappFlow1" doc:name="insureappFlow1">
+        <http:inbound-endpoint exchange-pattern="request-response" host="0.0.0.0" port="18003" path="external/insure" doc:name="HTTP"/>
+        <choice doc:name="Choice">
+            <when expression="message.inboundProperties['http.relative.path'] == 'tianan/saveNoCarProposal'">
+                <json:json-to-object-transformer doc:name="JSON to Object" returnClass="com.huibao.esb.insureservice.client.tianan.fake.NoCarProposalSaveRequest"/>
+                <mulexml:object-to-xml-transformer doc:name="Object to XML">
+                    <mulexml:alias name="NoCarProposalSaveRequest" class="com.huibao.esb.insureservice.client.tianan.fake.NoCarProposalSaveRequest"/>
+                    <mulexml:alias name="insuredDataDto" class="com.huibao.esb.insureservice.client.tianan.fake.InsuredDataDto"/>
+                    <mulexml:alias name="benfcDataDto" class="com.huibao.esb.insureservice.client.tianan.fake.BenfcDataDto"/>
+                </mulexml:object-to-xml-transformer>
+                <component doc:name="saveNoCarProposalBusiness">
+                    <spring-object bean="saveNoCarProposalBusinessBean"/>
+                </component>
+                <mulexml:xml-to-object-transformer returnClass="com.huibao.esb.insureservice.client.tianan.fake.NoCarProposalSaveResponse" doc:name="XML to Object">
+                    <mulexml:alias name="NoCarProposalSaveResponse" class="com.huibao.esb.insureservice.client.tianan.fake.NoCarProposalSaveResponse"/>
+                </mulexml:xml-to-object-transformer>
+                <json:object-to-json-transformer doc:name="Object to JSON"/>
+            </when>
+            <when expression="message.inboundProperties['http.relative.path'] == 'tianan/doPolicyQueryDetail'">
+                <json:json-to-object-transformer doc:name="JSON to Object" returnClass="com.huibao.esb.insureservice.client.tianan.fake.PolicyQueryDetailRequest"/>
+                <mulexml:object-to-xml-transformer doc:name="Object to XML">
+                    <mulexml:alias name="PolicyQueryDetailRequest" class="com.huibao.esb.insureservice.client.tianan.fake.PolicyQueryDetailRequest"/>
+                </mulexml:object-to-xml-transformer>
+                <component doc:name="doPolicyQueryDetailBusiness">
+                    <spring-object bean="doPolicyQueryDetailBusinessBean"/>
+                </component>
+                <mulexml:xml-to-object-transformer returnClass="com.huibao.esb.insureservice.client.tianan.fake.PolicyQueryDetailResponse" doc:name="XML to Object">
+                    <mulexml:alias name="PolicyQueryDetailResponse" class="com.huibao.esb.insureservice.client.tianan.fake.PolicyQueryDetailResponse"/>
+                    <mulexml:alias name="insuredDataDto" class="com.huibao.esb.insureservice.client.tianan.fake.InsuredDataDto"/>
+                    <mulexml:alias name="itemKindDataDto" class="com.huibao.esb.insureservice.client.tianan.fake.ItemKindDataDto"/>
+                    <mulexml:alias name="riskClauseDataDto" class="com.huibao.esb.insureservice.client.tianan.fake.RiskClauseDataDto"/>
+                    <mulexml:alias name="benfcDataDto" class="com.huibao.esb.insureservice.client.tianan.fake.BenfcDataDto"/>
+                    <mulexml:alias name="engageDataDto" class="com.huibao.esb.insureservice.client.tianan.fake.EngageDataDto"/>
+                </mulexml:xml-to-object-transformer>
+                <json:object-to-json-transformer doc:name="Object to JSON"/>
+            </when>
+        </choice>
+    </flow>
+</mule>
