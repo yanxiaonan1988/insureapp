@@ -107,17 +107,27 @@ console.log('##########post start############');
 
 
 
+//var options = {
+//		  host: '180.168.192.25',
+//		  port: 20680,
+//		  path: '/ecws/mobPhonePayDispatcherController.do',
+//		  method: 'POST',
+//		  headers: {
+//		    'Content-Type': 'text/xml',
+//		    'charset': 'UTF-8'
+//		  }
+//		};
+
 var options = {
-		  host: '180.168.192.25',
-		  port: 20680,
-		  path: '/ecws/mobPhonePayDispatcherController.do',
+		  host: '10.100.98.230',
+		  port: 18003,
+		  path: '/external/insure/tianping/query',
 		  method: 'POST',
 		  headers: {
-		    'Content-Type': 'text/xml',
+		    'Content-Type': 'application/json',
 		    'charset': 'UTF-8'
 		  }
 		};
-
 
 var req = http.request(options, function(res) {
 	  console.log('STATUS: ' + res.statusCode);
@@ -147,10 +157,19 @@ var req = http.request(options, function(res) {
 //		}
 //	};
 
-var xml = '<?xml version="1.0" encoding="GBK" standalone="yes"?><PackageList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><Package><Header><Version>2</Version><RequestType>100</RequestType><InsureType>100</InsureType><SessionId>14203599081568627857</SessionId><SellerId>315612465</SellerId><Status>100</Status><ErrorMessage></ErrorMessage><SendTime>2015-01-04 16:25:08</SendTime></Header><Request><InputsList><Inputs type="vehicleInfo"><Input name="licenseNo">苏H2D487</Input><Input name="cityCode">310100</Input><Input name="noLicenseFlag">0</Input><Input name="idNo">1111</Input><Input name="idNoType">09</Input><Input name="mobilePhone"></Input></Inputs></InputsList></Request><Sign><![CDATA[kuRw2GcbZSGqrsE8h9ENgYRBS_UX1eUKq9AYePWxL_gwlKOuM8ti51QufOJBqe2BGUeSFg8O7_3RT7HgF37x01ausJizMX77u5gv7rOzKhoLoTC3y3wP2fheZmZc8Zs0enihzmri33tm0H78tZ3we0S1RyN9uJZ378ay_7EUgaU]]></Sign></Package></PackageList>';
-//var xml = '<?xml version="1.0" encoding="GBK" standalone="yes"?><PackageList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><Package><Header><Version>2</Version><RequestType>100</RequestType><InsureType>100</InsureType><SessionId>14203599081568627857</SessionId><SellerId>315612465</SellerId><Status>100</Status><ErrorMessage></ErrorMessage><SendTime>2015-01-04 16:25:08</SendTime></Header><Request><InputsList><Inputs type="vehicleInfo"><Input name="licenseNo">浙AQ1S26</Input><Input name="cityCode">330100</Input><Input name="noLicenseFlag">0</Input><Input name="idNo">1111</Input><Input name="idNoType">09</Input><Input name="mobilePhone"></Input></Inputs></InputsList></Request><Sign><![CDATA[kuRw2GcbZSGqrsE8h9ENgYRBS_UX1eUKq9AYePWxL_gwlKOuM8ti51QufOJBqe2BGUeSFg8O7_3RT7HgF37x01ausJizMX77u5gv7rOzKhoLoTC3y3wP2fheZmZc8Zs0enihzmri33tm0H78tZ3we0S1RyN9uJZ378ay_7EUgaU]]></Sign></Package></PackageList>';
-var buf = iconv.encode(xml, 'GBK');//return GBK encoded bytes from unicode string
+var buf = {root:{
 	
-req.write(buf);
+	flag:1,
+	msg:"hello",
+	msglist:["xx","yy"]
+}
+		
+}
+
+//var xml = '<?xml version="1.0" encoding="GBK" standalone="yes"?><PackageList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><Package><Header><Version>2</Version><RequestType>100</RequestType><InsureType>100</InsureType><SessionId>14203599081568627857</SessionId><SellerId>315612465</SellerId><Status>100</Status><ErrorMessage></ErrorMessage><SendTime>2015-01-04 16:25:08</SendTime></Header><Request><InputsList><Inputs type="vehicleInfo"><Input name="licenseNo">苏H2D487</Input><Input name="cityCode">310100</Input><Input name="noLicenseFlag">0</Input><Input name="idNo">1111</Input><Input name="idNoType">09</Input><Input name="mobilePhone"></Input></Inputs></InputsList></Request><Sign><![CDATA[kuRw2GcbZSGqrsE8h9ENgYRBS_UX1eUKq9AYePWxL_gwlKOuM8ti51QufOJBqe2BGUeSFg8O7_3RT7HgF37x01ausJizMX77u5gv7rOzKhoLoTC3y3wP2fheZmZc8Zs0enihzmri33tm0H78tZ3we0S1RyN9uJZ378ay_7EUgaU]]></Sign></Package></PackageList>';
+//var xml = '<?xml version="1.0" encoding="GBK" standalone="yes"?><PackageList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><Package><Header><Version>2</Version><RequestType>100</RequestType><InsureType>100</InsureType><SessionId>14203599081568627857</SessionId><SellerId>315612465</SellerId><Status>100</Status><ErrorMessage></ErrorMessage><SendTime>2015-01-04 16:25:08</SendTime></Header><Request><InputsList><Inputs type="vehicleInfo"><Input name="licenseNo">浙AQ1S26</Input><Input name="cityCode">330100</Input><Input name="noLicenseFlag">0</Input><Input name="idNo">1111</Input><Input name="idNoType">09</Input><Input name="mobilePhone"></Input></Inputs></InputsList></Request><Sign><![CDATA[kuRw2GcbZSGqrsE8h9ENgYRBS_UX1eUKq9AYePWxL_gwlKOuM8ti51QufOJBqe2BGUeSFg8O7_3RT7HgF37x01ausJizMX77u5gv7rOzKhoLoTC3y3wP2fheZmZc8Zs0enihzmri33tm0H78tZ3we0S1RyN9uJZ378ay_7EUgaU]]></Sign></Package></PackageList>';
+//var buf = iconv.encode(xml, 'GBK');//return GBK encoded bytes from unicode string
+	
+req.write(JSON.stringify(buf));
 req.write('\n');
 req.end();
