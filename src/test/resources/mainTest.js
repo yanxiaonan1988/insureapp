@@ -1,7 +1,9 @@
 var restClient = require('./restClient');
+var tpRestClient = require('./tpRestClient');
 var extend = require('util')._extend;
 
 restClient.config({});
+tpRestClient.config({});
 
 var saveNoCarProposalReq = {};
 
@@ -23,7 +25,7 @@ saveNoCarProposalReq.endDate = '2015-09-04';
 saveNoCarProposalReq.inputDate = '2015-03-04';
 saveNoCarProposalReq.cFinTyp = '212';
 saveNoCarProposalReq.certiNo = '016431A00586';
-saveNoCarProposalReq.certiName = 'º¼ÖÝ±¾¼¶µçÏú';
+saveNoCarProposalReq.certiName = 'ï¿½ï¿½ï¿½Ý±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½';
 saveNoCarProposalReq.businessSource = '50';
 saveNoCarProposalReq.nAmt = '1';
 saveNoCarProposalReq.nPrm = '198';
@@ -35,29 +37,29 @@ saveNoCarProposalReq.channelDetailCode = '05';
 saveNoCarProposalReq.payTime = '2015-03-04 13:05:00';
 saveNoCarProposalReq.codind = 'Y';
 saveNoCarProposalReq.currency = 'CNY';
-saveNoCarProposalReq.payWaySource = '01-¿ìÇ®';
+saveNoCarProposalReq.payWaySource = '01-ï¿½ï¿½Ç®';
 
 saveNoCarProposalReq.holderNum = '1';
 saveNoCarProposalReq.payStandard = '1';
 saveNoCarProposalReq.appDataDto = {};
-saveNoCarProposalReq.appDataDto.address = 'ÉÏº£ÊÐºç¿ÚÇø»¨Ô°Â·';
+saveNoCarProposalReq.appDataDto.address = 'ï¿½Ïºï¿½ï¿½Ðºï¿½ï¿½ï¿½ï¿½Ô°Â·';
 saveNoCarProposalReq.appDataDto.birthday = '1989-01-24';
 saveNoCarProposalReq.appDataDto.email = '1047136372@qq.com';
 saveNoCarProposalReq.appDataDto.gender = '01';
 saveNoCarProposalReq.appDataDto.identifyNumber = '34032319900101179X';
 saveNoCarProposalReq.appDataDto.identifyType = '01';
 saveNoCarProposalReq.appDataDto.mobile = '18521511610';
-saveNoCarProposalReq.appDataDto.partyName = 'Í¶±£ÈË';
+saveNoCarProposalReq.appDataDto.partyName = 'Í¶ï¿½ï¿½ï¿½ï¿½';
 saveNoCarProposalReq.insuredList = [];
 saveNoCarProposalReq.insuredList[0] = {};
-saveNoCarProposalReq.insuredList[0].address = 'ÉÏº£ÊÐºç¿ÚÇø»¨Ô°Â·';
+saveNoCarProposalReq.insuredList[0].address = 'ï¿½Ïºï¿½ï¿½Ðºï¿½ï¿½ï¿½ï¿½Ô°Â·';
 saveNoCarProposalReq.insuredList[0].birthday = '1989-01-24';
 saveNoCarProposalReq.insuredList[0].email = '1047136372@qq.com';
 saveNoCarProposalReq.insuredList[0].gender = '01';
 saveNoCarProposalReq.insuredList[0].identifyNumber = '34032319900101179X';
 saveNoCarProposalReq.insuredList[0].identifyType = '01';
 saveNoCarProposalReq.insuredList[0].mobile = '15821757321';
-saveNoCarProposalReq.insuredList[0].partyName = '³ÂÂ·Â·';
+saveNoCarProposalReq.insuredList[0].partyName = 'ï¿½ï¿½Â·Â·';
 saveNoCarProposalReq.benfcList = null;
 saveNoCarProposalReq.itemDataDto = {};
 saveNoCarProposalReq.itemDataDto.seatCount = 0
@@ -77,15 +79,68 @@ doPolicyQueryDetailReq.requestType = '1';
 doPolicyQueryDetailReq.policyNo = '6603001113320150000013';
 
 
-restClient.saveNoCarProposal(saveNoCarProposalReq, function(err, obj){
+//restClient.saveNoCarProposal(saveNoCarProposalReq, function(err, obj){
+//if(err){console.log(err);}
+////console.log('%d -> %j', res.statusCode, res.headers);
+//console.log('%s', "TIANAN RES:"+JSON.stringify(obj));
+//});
+//
+//
+//restClient.doPolicyQueryDetail(doPolicyQueryDetailReq, function(err, obj){
+//	if(err){console.log(err);}
+//	//console.log('%d -> %j', res.statusCode, res.headers);
+//	console.log('%s', "TIANAN QUERY RES:"+JSON.stringify(obj));
+//});
+
+
+
+var queryBlankReq = {
+		"PackageList" : {
+			"@xmlns:xsi" : "http://www.w3.org/2001/XMLSchema-instance",
+			"Package" : {
+				"Header" : {
+					"Version" : "2",
+					"RequestType" : "100",
+					"InsureType" : "100",
+					"SessionId" : "14203599081568627857",
+					"SellerId" : "315612465",
+					"Status" : "100",
+					"ErrorMessage" : null,
+					"SendTime" : "2015-01-04 16:25:08"
+				},
+				"Request" : {
+					"InputsList" : {
+						"Inputs" : {
+							"@type" : "vehicleInfo",
+							"Input" : [ {
+								"@name" : "licenseNo",
+								"$" : "æµ™AQ1S26"
+							}, {
+								"@name" : "cityCode",
+								"$" : "330100"
+							}, {
+								"@name" : "noLicenseFlag",
+								"$" : "0"
+							}, {
+								"@name" : "idNo",
+								"$" : "1111"
+							}, {
+								"@name" : "idNoType",
+								"$" : "09"
+							}, {
+								"@name" : "mobilePhone"
+							} ]
+						}
+					}
+				},
+				"Sign" : "kuRw2GcbZSGqrsE8h9ENgYRBS_UX1eUKq9AYePWxL_gwlKOuM8ti51QufOJBqe2BGUeSFg8O7_3RT7HgF37x01ausJizMX77u5gv7rOzKhoLoTC3y3wP2fheZmZc8Zs0enihzmri33tm0H78tZ3we0S1RyN9uJZ378ay_7EUgaU"
+			}
+		}
+	}
+
+
+tpRestClient.queryBlank(queryBlankReq, function(err, obj){
 if(err){console.log(err);}
 //console.log('%d -> %j', res.statusCode, res.headers);
-console.log('%s', "TIANAN RES:"+JSON.stringify(obj));
-});
-
-
-restClient.doPolicyQueryDetail(doPolicyQueryDetailReq, function(err, obj){
-	if(err){console.log(err);}
-	//console.log('%d -> %j', res.statusCode, res.headers);
-	console.log('%s', "TIANAN QUERY RES:"+JSON.stringify(obj));
+console.log('%s', "TIANPING QUERYBLANK RES:"+JSON.stringify(obj));
 });

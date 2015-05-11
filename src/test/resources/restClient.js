@@ -20,6 +20,7 @@ var restClient = function() {
                 cb(err, obj);
             });
         }
+        
     };
 };
 
