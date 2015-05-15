@@ -95,9 +95,9 @@ public class RSACoderTest {
 		// 校验
 		assertEquals(inputStr2, outputStr2);
 		
-		String data = "<InputsList><Inputs type=\"vehicleInfo\"><Input name=\"licenseNo\">浙AQ1S26</Input><Input name=\"cityCode\">330100</Input><Input name=\"noLicenseFlag\">0</Input><Input name=\"idNo\">1111</Input><Input name=\"idNoType\">09</Input><Input name=\"mobilePhone\"></Input></Inputs></InputsList>";
+		String data = "<Request><InputsList><Inputs type=\"vehicleInfo\"><Input name=\"licenseNo\">浙AZ8Y55</Input><Input name=\"cityCode\">330100</Input><Input name=\"noLicenseFlag\">0</Input><Input name=\"idNo\">1111</Input><Input name=\"idNoType\">09</Input><Input name=\"mobilePhone\"></Input></Inputs></InputsList></Request>";
 		byte[] signedData = RSACoder.signMD5withRSA(data.getBytes("GBK"), privateKey);
-		System.out.println(Base64.encodeBase64String(signedData));
+		System.out.println(Base64.encodeBase64URLSafeString(signedData));
 	}
 
 }

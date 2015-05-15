@@ -103,7 +103,7 @@ var queryBlankReq = {
 					"RequestType" : "100",
 					"InsureType" : "100",
 					"SessionId" : "14203599081568627857",
-					"SellerId" : "315612465",
+					"SellerId" : "425604694",
 					"Status" : "100",
 					"ErrorMessage" : null,
 					"SendTime" : "2015-01-04 16:25:08"
@@ -114,7 +114,7 @@ var queryBlankReq = {
 							"@type" : "vehicleInfo",
 							"Input" : [ {
 								"@name" : "licenseNo",
-								"$" : "浙AQ1S26"
+								"$" : "浙AZ8Y55"
 							}, {
 								"@name" : "cityCode",
 								"$" : "330100"
@@ -133,7 +133,7 @@ var queryBlankReq = {
 						}
 					}
 				},
-				"Sign" : "kuRw2GcbZSGqrsE8h9ENgYRBS_UX1eUKq9AYePWxL_gwlKOuM8ti51QufOJBqe2BGUeSFg8O7_3RT7HgF37x01ausJizMX77u5gv7rOzKhoLoTC3y3wP2fheZmZc8Zs0enihzmri33tm0H78tZ3we0S1RyN9uJZ378ay_7EUgaU"
+				"Sign" : "Bt5SWMri-ytt7PMvolukbVb_eXyr8q3Qb8nUmoNDyRY0NNw2xdrDZrSh8unkFpq6qsaIwdzOHfwCqeA7gqmCM4siO3pW_5wm2_ApV6GH6MCOQg0hj5HpFbqOms_b5I_8cpkO0QV_bs2JG-dXjzWV3Q4yTqphp4OY8ha8FMexFxw"
 			}
 		}
 	}
