@@ -1,7 +1,7 @@
 /**
  * 2008-6-11
  */
-package insureapp;
+package com.huibao.esb.insureservice.util;
 
 import java.security.Key;
 import java.security.KeyFactory;

@@ -35,6 +35,9 @@ http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mul
         <spring:bean id="doPolicyQueryDetailBusinessBean" name="doPolicyQueryDetailBusinessBean" class="com.huibao.esb.insureservice.business.DoPolicyQueryDetailBusiness">
             <spring:property name="connector" ref="tiananQueryConnector"/>
         </spring:bean>
+        
+        <spring:bean id="tpCarBusinessBean" name="tpCarBusinessBean" class="com.huibao.esb.insureservice.business.TpCarBusiness">
+        </spring:bean>
          
     </spring:beans>
     <flow name="insureappFlow1" >
@@ -75,7 +78,11 @@ http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mul
             </when>
             <when expression="message.inboundProperties['http.relative.path'] == 'tianping/queryBlank'">
                 <json:json-to-xml-transformer doc:name="JSON to XML"/>
-                <file:outbound-endpoint path="d:\" outputPattern="1.txt" responseTimeout="10000" doc:name="File"/>
+                <component doc:name="tpCarBusinessBean">
+                    <spring-object bean="tpCarBusinessBean"/>
+                </component>
+                <http:outbound-endpoint exchange-pattern="request-response" address="${tianping.insure.url}" method="POST" encoding="UTF-8" doc:name="HTTP" contentType="text/xml"/>
+                <json:xml-to-json-transformer doc:name="XML to JSON"/>
             </when>
         </choice>
     </flow>
