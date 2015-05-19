@@ -18,7 +18,7 @@ import com.huibao.esb.insureservice.util.RSACoder;
 
 public class TpCarBusiness {
 	
-	public String doBusiness(String xml) throws Exception {
+	public byte[] doBusiness(String xml) throws Exception {
 //		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 //		DocumentBuilder builder = factory.newDocumentBuilder();
 //        // File file = new File("NewFile.xml");
@@ -51,9 +51,7 @@ public class TpCarBusiness {
 		
 		xml = xml.subSequence(0, start)+"<Sign>"+signedToken+"</Sign>"+xml.subSequence(start, xml.length());
 		
-		System.out.println(xml);
-		
-        return new String(xml.getBytes("GBK"),"GBK");
+        return xml.getBytes();
 	}
 	
 }

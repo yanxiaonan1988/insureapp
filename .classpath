@@ -8,5 +8,6 @@
 	<classpathentry kind="src" output="target/test-classes" path="src/test/resources"/>
 	<classpathentry kind="src" path="src/main/app"/>
 	<classpathentry kind="src" path="mappings"/>
+	<classpathentry kind="lib" path="C:/Users/20130711/Desktop/commons-codec-1.9.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

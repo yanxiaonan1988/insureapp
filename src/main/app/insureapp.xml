@@ -76,19 +76,22 @@ http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mul
                 </mulexml:xml-to-object-transformer>
                 <json:object-to-json-transformer doc:name="Object to JSON"/>
             </when>
-            <when expression="message.inboundProperties['http.relative.path'] == 'tianping/queryBlank'">
+            <when expression="message.inboundProperties['http.relative.path'] == 'tianping/tpcar'">
                 <json:json-to-xml-transformer doc:name="JSON to XML"/>
                 <component doc:name="tpCarBusinessBean">
                     <spring-object bean="tpCarBusinessBean"/>
                 </component>
-                <http:outbound-endpoint exchange-pattern="request-response" address="${tianping.insure.url}" method="POST" encoding="UTF-8" doc:name="HTTP" contentType="text/xml"/>
+                <byte-array-to-string-transformer encoding="GBK" doc:name="Byte Array to String"/>
+                <http:outbound-endpoint exchange-pattern="request-response" address="${tianping.insure.url}" method="POST" encoding="GBK" doc:name="HTTP" contentType="text/xml"/>
                 <json:xml-to-json-transformer doc:name="XML to JSON"/>
             </when>
         </choice>
     </flow>
+    <!-- 
     <flow name="insureappFlow">
         <file:inbound-endpoint path="d:\temptemp" responseTimeout="10000" encoding="GBK" doc:name="File"/>
         <json:xml-to-json-transformer doc:name="XML to JSON"/>
         <file:outbound-endpoint path="d:\" outputPattern="1.txt" responseTimeout="10000" doc:name="File"/>
     </flow>
+     -->
 </mule>
