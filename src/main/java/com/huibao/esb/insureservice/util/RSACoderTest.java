@@ -95,7 +95,7 @@ public class RSACoderTest {
 		// 校验
 		assertEquals(inputStr2, outputStr2);
 		
-		String data = "<Request><InputsList><Inputs type=\"vehicleInfo\"><Input name=\"licenseNo\">浙AZ8Y55</Input><Input name=\"cityCode\">330100</Input><Input name=\"noLicenseFlag\">0</Input><Input name=\"idNo\">1111</Input><Input name=\"idNoType\">09</Input><Input name=\"mobilePhone\"/></Inputs></InputsList></Request>";
+		String data = "<Request><InputsList><Inputs type=\"vehicleInfo\"><Input name=\"vehicleId\">402880882e931707012ec6c26e2722ae</Input><Input name=\"specialCarFlag\">0</Input><Input name=\"vehicleModelName\">蒙迪欧CAF7230A轿车 - (￥157200)手自一体 时尚型 国Ⅳ(201103)</Input><Input name=\"firstRegisterDate\">2011-01-01</Input><Input name=\"specialCarDate\"></Input><Input name=\"engineNo\">3131313</Input><Input name=\"vehicleFrameNo\">LVSHBFAF37F011622</Input><Input name=\"bizBeginDate\">2015-01-01</Input><Input name=\"forceBeginDate\">2015-01-01</Input></Inputs><Inputs type=\"ownerInfo\"><Input name=\"ownerName\">方法</Input></Inputs></InputsList></Request>";
 		byte[] signedData = RSACoder.signMD5withRSA(data.getBytes("GBK"), privateKey);
 		System.out.println(Base64.encodeBase64URLSafeString(signedData));
 	}

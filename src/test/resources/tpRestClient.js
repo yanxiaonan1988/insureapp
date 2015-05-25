@@ -5,8 +5,8 @@ var tpRestClient = function() {
     return {
         config: function(conf) {
             client = restify.createJsonClient({
-//                url: 'http://127.0.0.1:18002'
-                	url: 'http://121.40.82.99:18002'
+                url: 'http://127.0.0.1:18002'
+//                	url: 'http://121.40.82.99:18002'
             });
         },
         queryBlank: function(reqObj, cb) {

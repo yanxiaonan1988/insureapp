@@ -136,10 +136,132 @@ var queryBlankReq = {
 //				"Sign" : "Bt5SWMri-ytt7PMvolukbVb_eXyr8q3Qb8nUmoNDyRY0NNw2xdrDZrSh8unkFpq6qsaIwdzOHfwCqeA7gqmCM4siO3pW_5wm2_ApV6GH6MCOQg0hj5HpFbqOms_b5I_8cpkO0QV_bs2JG-dXjzWV3Q4yTqphp4OY8ha8FMexFxw"
 			}
 		}
+	};
+
+
+//报价请求
+var queryPriceReq = {
+	"PackageList" : {
+		"@xmlns:xsi" : "http://www.w3.org/2001/XMLSchema-instance",
+		"Package" : {
+			"Header" : {
+				"Version" : "2",
+				"RequestType" : "105",
+				"InsureType" : "100",
+				"SessionId" : "14203599081568627857",
+				"SellerId" : "425604694",
+				"Status" : "100",
+				"ErrorMessage" : null,
+				"SendTime" : "2015-01-04 16:27:35"
+			},
+			"Request" : {
+				"InputsList" : {
+					"Inputs" : [ {
+						"@type" : "vehicleInfo",
+						"Input" : [ {
+							"@name" : "vehicleId",
+							"$" : "402880882e931707012ec6c26e2722ae"
+						}, {
+							"@name" : "specialCarFlag",
+							"$" : "0"
+						}, {
+							"@name" : "vehicleModelName",
+							"$" : "蒙迪欧CAF7230A轿车 - (￥157200)手自一体 时尚型 国Ⅳ(201103)"
+						}, {
+							"@name" : "firstRegisterDate",
+							"$" : "2011-01-01"
+						}, {
+							"@name" : "specialCarDate"
+						}, {
+							"@name" : "engineNo",
+							"$" : "3131314"
+						}, {
+							"@name" : "vehicleFrameNo",
+							"$" : "LVSHBFAF37F011623"
+						}, {
+							"@name" : "bizBeginDate",
+							"$" : "2015-01-01"
+						}, {
+							"@name" : "forceBeginDate",
+							"$" : "2015-01-01"
+						} ]
+					}, {
+						"@type" : "ownerInfo",
+						"Input" : {
+							"@name" : "ownerName",
+							"$" : "方法"
+						}
+					} ]
+				}
+			}
+//			"Sign" : "KR-jWDXUXIkzyf1MXi2qVgKvdAp2HHa7lqQ80A4ao0GKDailffHXMC9ngSh15vF4oVVm1qa1tA6R2BdR2nlK696bJxdKly4zRH9QQX4keB6qTLWN6OPPtBp8LCCgFu8FB_IbEmo5azQ0Q78hdYJ5TRwA5tawO3txiPxSZs26J_Q"
+		}
 	}
+};
 
 
-tpRestClient.queryBlank(queryBlankReq, function(err, obj){
+//自定义报价请求
+var diyQueryPriceReq = {
+		"PackageList" : {
+			"@xmlns:xsi" : "http://www.w3.org/2001/XMLSchema-instance",
+			"Package" : {
+				"Header" : {
+					"Version" : "2",
+					"RequestType" : "110",
+					"InsureType" : "100",
+					"SessionId" : "14203599081568627857",
+					"SellerId" : "425604692",
+					"Status" : "100",
+					"ErrorMessage" : null,
+					"SendTime" : "2015-03-31 17:59:00"
+				},
+				"Request" : {
+					"InputsList" : {
+						"Inputs" : {
+							"@type" : "optional",
+							"Input" : [ {
+								"@name" : "bizFlag",
+								"$" : "1"
+							}, {
+								"@name" : "cov_200",
+								"$" : "1"
+							}, {
+								"@name" : "cov_600",
+								"$" : "300000.00"
+							}, {
+								"@name" : "cov_500",
+								"$" : "0"
+							}, {
+								"@name" : "cov_701",
+								"$" : "10000.00"
+							}, {
+								"@name" : "cov_702",
+								"$" : "10000.00"
+							}, {
+								"@name" : "cov_231",
+								"$" : "0"
+							}, {
+								"@name" : "forceFlag",
+								"$" : "1"
+							}, {
+								"@name" : "cov_310",
+								"$" : "0"
+							}, {
+								"@name" : "cov_210",
+								"$" : "0"
+							}, {
+								"@name" : "cov_290",
+								"$" : "0"
+							} ]
+						}
+					}
+				}
+//				"Sign" : "IJv0fl06wjcUuiuVnkjhqrdikHsYuTqJwt2fiqJhpg0QB8R0f6zaJlQMWTrQvB5Gtnriph8edPGvT9IYy3Yl7Ht51l_lrPHjX9kH1v_YwWb4q8ICDEb6e7YSYufne442gwHqLdVlCQrnDYVUUtwJXbn9WlyRDoozXipt9G3LDHA"
+			}
+		}
+	}; 
+
+tpRestClient.queryBlank(queryPriceReq, function(err, obj){
 if(err){console.log(err);}
 //console.log('%d -> %j', res.statusCode, res.headers);
 console.log('%s', "TIANPING QUERYBLANK RES:"+JSON.stringify(obj));
