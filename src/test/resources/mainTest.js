@@ -261,7 +261,177 @@ var diyQueryPriceReq = {
 		}
 	}; 
 
-tpRestClient.queryBlank(queryPriceReq, function(err, obj){
+var doProposalReq = {
+		"PackageList" : {
+			"@xmlns:xsi" : "http://www.w3.org/2001/XMLSchema-instance",
+			"Package" : {
+				"Header" : {
+					"Version" : "2",
+					"RequestType" : "115",
+					"InsureType" : "100",
+					"SessionId" : "14203599081568627857",
+					"SellerId" : "425604694",
+					"Status" : "100",
+					"ErrorMessage" : null,
+					"SendTime" : "2015-01-04 16:28:34"
+				},
+				"Request" : {
+					"InputsList" : {
+						"Inputs" : [ {
+							"@type" : "insuredInfo",
+							"Input" : [ {
+								"@name" : "insuredIdNo",
+								"$" : "440181198208167873"
+							}, {
+								"@name" : "insuredName",
+								"$" : "方法"
+							}, {
+								"@name" : "insuredIdType",
+								"$" : "01"
+							}, {
+								"@name" : "insuredBirthday",
+								"$" : "1982-08-16"
+							}, {
+								"@name" : "insuredMobile",
+								"$" : "13222222222"
+							}, {
+								"@name" : "insuredGender",
+								"$" : "1"
+							} ]
+						}, {
+							"@type" : "economic",
+							"Input" : [ {
+								"@name" : "cov_200",
+								"$" : "212996.40"
+							}, {
+								"@name" : "cov_600",
+								"$" : "200000"
+							}, {
+								"@name" : "cov_310",
+								"$" : "0"
+							}, {
+								"@name" : "cov_290",
+								"$" : "0"
+							}, {
+								"@name" : "forceFlag",
+								"$" : "0"
+							}, {
+								"@name" : "bizTotalPremium",
+								"$" : "588699"
+							}, {
+								"@name" : "totalPremium",
+								"$" : "588699"
+							}, {
+								"@name" : "standardPremium",
+								"$" : "692499"
+							} ]
+						}, {
+							"@type" : "ownerInfo",
+							"Input" : [ {
+								"@name" : "ownerIdType",
+								"$" : "01"
+							}, {
+								"@name" : "ownerMobile",
+								"$" : "13222222222"
+							}, {
+								"@name" : "ownerGender",
+								"$" : "1"
+							}, {
+								"@name" : "ownerIdNo",
+								"$" : "440181198208167873"
+							}, {
+								"@name" : "ownerName",
+								"$" : "方法"
+							}, {
+								"@name" : "ownerBirthday",
+								"$" : "1982-08-16"
+							} ]
+						}, {
+							"@type" : "deliverInfo",
+							"Input" : [ {
+								"@name" : "addresseeName",
+								"$" : "rrr"
+							}, {
+								"@name" : "addresseeProvince"
+							}, {
+								"@name" : "addresseeCityName",
+								"$" : "韶关市"
+							}, {
+								"@name" : "addresseeMobile",
+								"$" : "13335003235"
+							}, {
+								"@name" : "addresseeTown"
+							}, {
+								"@name" : "addresseeDetails",
+								"$" : "广东省韶关市浈江区rrr"
+							}, {
+								"@name" : "addresseeCity",
+								"$" : "4402"
+							} ]
+						}, {
+							"@type" : "applicantInfo",
+							"Input" : [ {
+								"@name" : "applicantIdType",
+								"$" : "01"
+							}, {
+								"@name" : "applicantMobile",
+								"$" : "13222222222"
+							}, {
+								"@name" : "applicantBirthday",
+								"$" : "1982-08-16"
+							}, {
+								"@name" : "applicantIdNo",
+								"$" : "440181198208167873"
+							}, {
+								"@name" : "applicantGender",
+								"$" : "1"
+							}, {
+								"@name" : "applicantName",
+								"$" : "方法"
+							} ]
+						}, {
+							"@type" : "deadline",
+							"Input" : [ {
+								"@name" : "forceBeginDate",
+								"$" : "2015-01-07"
+							}, {
+								"@name" : "bizBeginDate",
+								"$" : "2015-01-07"
+							} ]
+						}, {
+							"@type" : "force",
+							"Input" : [ {
+								"@name" : "forceTotalPremium",
+								"$" : "0"
+							}, {
+								"@name" : "vehicleTaxPremium",
+								"$" : "0"
+							}, {
+								"@name" : "forcePremium",
+								"$" : "0"
+							} ]
+						} ]
+					},
+					"Order" : {
+						"TBOrderId" : "2015010400000028",
+						"Premium" : "588699",
+						"SubOrderList" : {
+							"SubOrder" : {
+								"@type" : "biz",
+								"TBOrderId" : "2015010400000006",
+								"ItemId" : "2015010400000028",
+								"Premium" : "588699"
+							}
+						}
+					}
+				}
+//				"Sign" : "jZRvZIyMEvOhAOAlvdSYfs3N-Ny3PXNC2CupAC9HYUviQQthYrDD9GIgjX0EEpparM126xE6M8CHSBFancmjyjhooAJyVFGMPRcyOWeXJahZ9ZOBStYl5M7cGCzA2L6na5UbuC9VA_1XtuqOGWUJ_QsEYGOIzseyE4pRvk2ZUZw"
+			}
+		}
+	};
+
+
+tpRestClient.queryBlank(doProposalReq, function(err, obj){
 if(err){console.log(err);}
 //console.log('%d -> %j', res.statusCode, res.headers);
 console.log('%s', "TIANPING QUERYBLANK RES:"+JSON.stringify(obj));
