@@ -1,0 +1,33 @@
+{
+	"PackageList" : {
+		"Package" : {
+			"Header" : {
+				"Version" : "2",
+				"InsureType" : "100",
+				"RequestType" : "230",
+				"SellerId" : "315612465",
+				"SessionId" : "14203599081568627857",
+				"SendTime" : "2015-01-04 16:35:49",
+				"Status" : "100",
+				"ErrorMessage" : null
+			},
+			"Response" : {
+				"Order" : {
+					"TBOrderId" : "2015010400000028",
+					"Premium" : "588699",
+					"PayNo" : null,
+					"SubOrderList" : {
+						"SubOrder" : {
+							"@type" : "biz",
+							"TBOrderId" : "2015010400000006",
+							"ItemId" : "2015010400000028",
+							"Premium" : "588699",
+							"ProposalNo" : "1000108000006275880",
+							"PolicyNo" : "21030100108150000005"
+						}
+					}
+				}
+			}
+		}
+	}
+}

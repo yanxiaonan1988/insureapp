@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <mule xmlns:scripting="http://www.mulesoft.org/schema/mule/scripting" xmlns:context="http://www.springframework.org/schema/context" xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:json="http://www.mulesoft.org/schema/mule/json" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
-	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.6.1"
+	xmlns:spring="http://www.springframework.org/schema/beans" version="EE-3.5.2"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
@@ -40,7 +40,7 @@ http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mul
         </spring:bean>
          
     </spring:beans>
-    <flow name="insureappFlow1" >
+    <flow name="insureappFlow1" doc:name="insureappFlow1">
         <http:inbound-endpoint exchange-pattern="request-response" host="0.0.0.0" port="18002" path="external/insure" doc:name="HTTP"/>
         <choice doc:name="Choice">
             <when expression="message.inboundProperties['http.relative.path'] == 'tianan/saveNoCarProposal'">
@@ -85,13 +85,23 @@ http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mul
                 <http:outbound-endpoint exchange-pattern="request-response" address="${tianping.insure.url}" method="POST" encoding="GBK" doc:name="HTTP" contentType="text/xml"/>
                 <json:xml-to-json-transformer doc:name="XML to JSON"/>
             </when>
+            <when expression="message.inboundProperties['http.relative.path'] == 'tianping/tpcarcallback'">
+                <json:xml-to-json-transformer doc:name="XML to JSON"/>
+                <file:outbound-endpoint path="/Users/zhoutiannan" outputPattern="1.txt" responseTimeout="10000" doc:name="File"/>
+                <http:outbound-endpoint exchange-pattern="request-response" address="${tianping.insure.callbackurl}" method="POST" encoding="GBK" doc:name="HTTP" contentType="application/json"/>                
+                <json:json-to-xml-transformer doc:name="JSON to XML"/>
+                <component doc:name="tpCarBusinessBean">
+                    <spring-object bean="tpCarBusinessBean"/>
+                </component>
+                <byte-array-to-string-transformer encoding="GBK" doc:name="Byte Array to String"/>
+            </when>
         </choice>
     </flow>
-    <!-- 
+    <!-- -->
     <flow name="insureappFlow">
-        <file:inbound-endpoint path="d:\temptemp" responseTimeout="10000" encoding="GBK" doc:name="File"/>
+        <file:inbound-endpoint path="/Users/zhoutiannan/temptemp" responseTimeout="10000" encoding="GBK" doc:name="File"/>
         <json:xml-to-json-transformer doc:name="XML to JSON"/>
-        <file:outbound-endpoint path="d:\" outputPattern="1.txt" responseTimeout="10000" doc:name="File"/>
+        <file:outbound-endpoint path="/Users/zhoutiannan" outputPattern="1.txt" responseTimeout="10000" doc:name="File"/>
     </flow>
-     -->
+     
 </mule>

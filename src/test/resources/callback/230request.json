@@ -1,0 +1,42 @@
+{
+	"PackageList" : {
+		"@xmlns:xsi" : "http://www.w3.org/2001/XMLSchema-instance",
+		"Package" : {
+			"Header" : {
+				"Version" : "2",
+				"RequestType" : "230",
+				"InsureType" : "100",
+				"SessionId" : "ZHB_cd628164-515d-4b70-acec-4263cb33a6d6",
+				"SellerId" : "415312489",
+				"Status" : "100",
+				"ErrorMessage" : null,
+				"SendTime" : "2015-01-27 17:38:06"
+			},
+			"Request" : {
+				"Order" : {
+					"TBOrderId" : "201412120001",
+					"Premium" : "446691",
+					"PayNo" : null,
+					"SubOrderList" : {
+						"SubOrder" : [ {
+							"@type" : "biz",
+							"TBOrderId" : "201412120001",
+							"ItemId" : "1234567890",
+							"Premium" : "279691",
+							"ProposalNo" : "1000108000006300101",
+							"PolicyNo" : "21070100108150000032"
+						}, {
+							"@type" : "force",
+							"TBOrderId" : "201412120001",
+							"ItemId" : "0987654321",
+							"Premium" : "167000",
+							"ProposalNo" : "1000105000006300102",
+							"PolicyNo" : "21070100105150000030"
+						} ]
+					}
+				}
+			},
+			"Sign" : "OcSbRb-jFm7sF7ltUqhThxaOX0z4ic5mZYHw0s_fWW_mSuhRq8Lk_3Igkhyzixd1sW2MQrO0U2E0_OdClpLvr0qaL-FK7WOyavK3UZGq-reGBZ4jLLUj-ZE_tY5EDo5Ka38-pXezSM0Zn3IIALUz04kB6ZuvK4BiovYeYgxihTc"
+		}
+	}
+}
