@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="gbk" standalone="yes"?>
+<PackageList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Package>
+        <Header>
+            <Version>2</Version>
+            <RequestType>110</RequestType>
+            <InsureType>100</InsureType>
+            <SessionId>7756da0084e24929bc31cdbe41e915a7</SessionId>
+            <SellerId>425604692</SellerId>
+            <Status>100</Status>
+            <ErrorMessage></ErrorMessage>
+            <SendTime>2015-03-31 17:59:00</SendTime>
+        </Header>
+        <Request>
+            <InputsList>
+                <Inputs type="optional">
+                    <Input name="bizFlag">1</Input>
+                    <Input name="cov_200">1</Input>
+                    <Input name="cov_600">300000.00</Input>
+                    <Input name="cov_500">0</Input>
+                    <Input name="cov_701">10000.00</Input>
+                    <Input name="cov_702">10000.00</Input>
+                    <Input name="cov_231">0</Input>
+                    <Input name="forceFlag">1</Input>
+                    <Input name="cov_310">0</Input>
+                    <Input name="cov_210">0</Input>
+                    <Input name="cov_290">0</Input>
+                </Inputs>
+            </InputsList>
+        </Request>
+        <Sign>IJv0fl06wjcUuiuVnkjhqrdikHsYuTqJwt2fiqJhpg0QB8R0f6zaJlQMWTrQvB5Gtnriph8edPGvT9IYy3Yl7Ht51l_lrPHjX9kH1v_YwWb4q8ICDEb6e7YSYufne442gwHqLdVlCQrnDYVUUtwJXbn9WlyRDoozXipt9G3LDHA</Sign>
+    </Package>
+</PackageList>

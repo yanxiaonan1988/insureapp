@@ -1,0 +1,42 @@
+{
+	"PackageList" : {
+		"@xmlns:xsi" : "http://www.w3.org/2001/XMLSchema-instance",
+		"Package" : {
+			"Header" : {
+				"Version" : "2",
+				"RequestType" : "215",
+				"InsureType" : "100",
+				"SessionId" : "ZHB_7cda07e1-0360-4f9a-9aaa-5d4071f7257b",
+				"SellerId" : "415312489",
+				"Status" : "100",
+				"ErrorMessage" : null,
+				"SendTime" : "2015-02-02 14:22:03"
+			},
+			"Request" : {
+				"Order" : {
+					"TBOrderId" : "201412120001",
+					"Premium" : "423786",
+					"PayNo" : null,
+					"PayURL" : "http://dev.tpis.tpaic.com:14080/payRequestInit.do?ecInsureId=10802715020200545279",
+					"PayOutTime" : "2015-02-12 14:21:49",
+					"SubOrderList" : {
+						"SubOrder" : [ {
+							"@type" : "biz",
+							"TBOrderId" : "201412120001",
+							"ItemId" : "1234567890",
+							"Premium" : "292786",
+							"ProposalNo" : "1000108000006309182"
+						}, {
+							"@type" : "force",
+							"TBOrderId" : "201412120001",
+							"ItemId" : "0987654321",
+							"Premium" : "131000",
+							"ProposalNo" : "1000105000006309183"
+						} ]
+					}
+				}
+			},
+			"Sign" : "E1EXfpOQCQn2s1loFQp0ZnKQjDTGGj2jqgEcAZhe5IjRjm6nvdmLTjzg1cfYjFLpcsUwu3S36KcgUwmogH7K-Dozaznmj6plTwnlARHBZMFP3mdgCMLAM8ZECKu5qgNdiAzv0io21EjrKOcMV3ApftJbjC0dNitqTlyR5-_GEv0"
+		}
+	}
+}

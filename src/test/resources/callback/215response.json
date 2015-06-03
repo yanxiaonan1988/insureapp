@@ -1,0 +1,38 @@
+{
+	"PackageList" : {
+		"Package" : {
+			"Header" : {
+				"Version" : "2",
+				"InsureType" : "100",
+				"RequestType" : "215",
+				"SellerId" : "714354464",
+				"SessionId" : "f53f83def2537d5148ab55d24f072c5c",
+				"SendTime" : "2014-08-28 01:16:28",
+				"Status" : "101",
+				"ErrorMessage" : null
+			},
+			"Response" : {
+				"Order" : {
+					"TBOrderId" : "789805132860910",
+					"Premium" : "301933",
+					"PayNo" : null,
+					"SubOrderList" : {
+						"SubOrder" : [ {
+							"@type" : "biz",
+							"TBOrderId" : "789805132880910",
+							"ItemId" : "26238164963",
+							"Premium" : "205433",
+							"ProposalNo" : "1000108000087006471"
+						}, {
+							"@type" : "force",
+							"TBOrderId" : "789805132870910",
+							"ItemId" : "26238164963",
+							"Premium" : "96500",
+							"ProposalNo" : "1000105000087006472"
+						} ]
+					}
+				}
+			}
+		}
+	}
+}
