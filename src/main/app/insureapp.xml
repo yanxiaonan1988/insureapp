@@ -41,7 +41,7 @@ http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mul
          
     </spring:beans>
     <flow name="insureappFlow1" >
-        <http:inbound-endpoint exchange-pattern="request-response" host="0.0.0.0" port="18002" path="external/insure" doc:name="HTTP"/>
+        <http:inbound-endpoint exchange-pattern="request-response" host="0.0.0.0" port="18002" path="external/insure" responseTimeout="600000"/>
         <choice doc:name="Choice">
             <when expression="message.inboundProperties['http.relative.path'] == 'tianan/saveNoCarProposal'">
                 <json:json-to-object-transformer doc:name="JSON to Object" returnClass="com.huibao.esb.insureservice.client.tianan.fake.NoCarProposalSaveRequest"/>
@@ -82,7 +82,7 @@ http://www.mulesoft.org/schema/mule/scripting http://www.mulesoft.org/schema/mul
                     <spring-object bean="tpCarBusinessBean"/>
                 </component>
                 <byte-array-to-string-transformer encoding="GBK" doc:name="Byte Array to String"/>
-                <http:outbound-endpoint exchange-pattern="request-response" address="${tianping.insure.url}" method="POST" encoding="GBK" doc:name="HTTP" contentType="text/xml"/>
+                <http:outbound-endpoint exchange-pattern="request-response" address="${tianping.insure.url}" method="POST" encoding="GBK" responseTimeout="600000" doc:name="HTTP" contentType="text/xml"/>
                 <json:xml-to-json-transformer doc:name="XML to JSON"/>
             </when>
         </choice>
