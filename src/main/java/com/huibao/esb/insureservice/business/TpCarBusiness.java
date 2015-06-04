@@ -35,8 +35,8 @@ public class TpCarBusiness {
 		byte[] publicKey = RSACoder.getImposedPublicKey();
 		byte[] privateKey = RSACoder.getImposedPrivateKey();
 
-		System.err.println("¹«Ô¿:\n" + Base64.encodeBase64String(publicKey));
-		System.err.println("Ë½Ô¿:\n" + Base64.encodeBase64String(privateKey));
+//		System.err.println("¹«Ô¿:\n" + Base64.encodeBase64String(publicKey));
+//		System.err.println("Ë½Ô¿:\n" + Base64.encodeBase64String(privateKey));
 		
 		
 		int start = xml.indexOf("<Request>");

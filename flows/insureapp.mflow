@@ -1,0 +1,613 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mule-configuration xmlns="http://www.mulesoft.com/tooling/messageflow" name="insureapp">
+    <global-element name="Property Placeholder" type="http://www.springframework.org/schema/context/property-placeholder" entity-id="Property Placeholder#1">
+        <properties>
+            <property name="properties-ref"/>
+            <property name="order"/>
+            <property name="location" value="classpath:insureApp.properties"/>
+            <property name="local-override"/>
+            <property name="system-properties-mode"/>
+            <property name="file-encoding"/>
+            <property name="auxiliary;index" value="1"/>
+            <property name="ignore-unresolvable"/>
+            <property name="ignore-resource-not-found"/>
+        </properties>
+    </global-element>
+    <global-element name="Bean" type="http://www.springframework.org/schema/beans/bean" entity-id="Bean#1">
+        <properties>
+            <property name="factory-bean"/>
+            <property name="abstract"/>
+            <property name="scope"/>
+            <property name="init-method"/>
+            <property name="autowire-candidate"/>
+            <property name="factory-method"/>
+            <property name="class" value="org.codehaus.jackson.xc.JaxbAnnotationIntrospector"/>
+            <property name="parent"/>
+            <property name="children"/>
+            <property name="lazy-init"/>
+            <property name="auxiliary;wrappedIn" value="beans@spring@http://www.springframework.org/schema/beans"/>
+            <property name="id" value="annotationIntrospectorBean"/>
+            <property name="name" value="annotationIntrospectorBean"/>
+            <property name="primary"/>
+            <property name="autowire"/>
+            <property name="destroy-method"/>
+            <property name="auxiliary;wrapIn" value="2"/>
+            <property name="auxiliary;index" value="3"/>
+            <property name="depends-on"/>
+        </properties>
+    </global-element>
+    <global-element name="Bean" type="http://www.springframework.org/schema/beans/bean" entity-id="Bean#2">
+        <properties>
+            <property name="factory-bean"/>
+            <property name="abstract"/>
+            <property name="scope"/>
+            <property name="init-method"/>
+            <property name="autowire-candidate"/>
+            <property name="factory-method"/>
+            <property name="class" value="org.codehaus.jackson.map.ObjectMapper"/>
+            <property name="parent"/>
+            <property name="children"/>
+            <property name="lazy-init"/>
+            <property name="auxiliary;wrappedIn" value="beans@spring@http://www.springframework.org/schema/beans"/>
+            <property name="id" value="objectMapperBean"/>
+            <property name="name" value="objectMapperBean"/>
+            <property name="primary"/>
+            <property name="autowire"/>
+            <property name="destroy-method"/>
+            <property name="auxiliary;wrapIn" value="2"/>
+            <property name="auxiliary;index" value="4"/>
+            <property name="depends-on"/>
+            <property-collection name="@http://www.springframework.org/schema/beans/property;0">
+                <property name="ref" value="annotationIntrospectorBean"/>
+                <property name="name" value="annotationIntrospector"/>
+                <property name="auxiliary;index" value="5"/>
+                <property name="auxiliary;wrapIn" value="5"/>
+            </property-collection>
+        </properties>
+    </global-element>
+    <global-element name="Bean" type="http://www.springframework.org/schema/beans/bean" entity-id="Bean#3">
+        <properties>
+            <property name="factory-bean"/>
+            <property name="abstract"/>
+            <property name="scope" value="singleton"/>
+            <property name="init-method"/>
+            <property name="autowire-candidate"/>
+            <property name="factory-method"/>
+            <property name="class" value="com.huibao.esb.insureservice.connector.TiananConnector"/>
+            <property name="parent"/>
+            <property name="children"/>
+            <property name="lazy-init"/>
+            <property name="auxiliary;wrappedIn" value="beans@spring@http://www.springframework.org/schema/beans"/>
+            <property name="id" value="tiananConnector"/>
+            <property name="name" value="tiananConnector"/>
+            <property name="primary"/>
+            <property name="autowire"/>
+            <property name="destroy-method"/>
+            <property name="auxiliary;wrapIn" value="2"/>
+            <property name="auxiliary;index" value="6"/>
+            <property name="depends-on"/>
+            <property-collection name="@http://www.springframework.org/schema/beans/property;0">
+                <property name="name" value="urlString"/>
+                <property name="value" value="${tianan.insure.url}"/>
+                <property name="auxiliary;index" value="7"/>
+                <property name="auxiliary;wrapIn" value="7"/>
+            </property-collection>
+        </properties>
+    </global-element>
+    <global-element name="Bean" type="http://www.springframework.org/schema/beans/bean" entity-id="Bean#4">
+        <properties>
+            <property name="factory-bean"/>
+            <property name="abstract"/>
+            <property name="scope" value="singleton"/>
+            <property name="init-method"/>
+            <property name="autowire-candidate"/>
+            <property name="factory-method"/>
+            <property name="class" value="com.huibao.esb.insureservice.connector.TiananQueryConnector"/>
+            <property name="parent"/>
+            <property name="children"/>
+            <property name="lazy-init"/>
+            <property name="auxiliary;wrappedIn" value="beans@spring@http://www.springframework.org/schema/beans"/>
+            <property name="id" value="tiananQueryConnector"/>
+            <property name="name" value="tiananQueryConnector"/>
+            <property name="primary"/>
+            <property name="autowire"/>
+            <property name="destroy-method"/>
+            <property name="auxiliary;wrapIn" value="2"/>
+            <property name="auxiliary;index" value="8"/>
+            <property name="depends-on"/>
+            <property-collection name="@http://www.springframework.org/schema/beans/property;0">
+                <property name="name" value="urlString"/>
+                <property name="value" value="${tianan.query.url}"/>
+                <property name="auxiliary;index" value="9"/>
+                <property name="auxiliary;wrapIn" value="9"/>
+            </property-collection>
+        </properties>
+    </global-element>
+    <global-element name="Bean" type="http://www.springframework.org/schema/beans/bean" entity-id="Bean#5">
+        <properties>
+            <property name="factory-bean"/>
+            <property name="abstract"/>
+            <property name="scope"/>
+            <property name="init-method"/>
+            <property name="autowire-candidate"/>
+            <property name="factory-method"/>
+            <property name="class" value="com.huibao.esb.insureservice.business.SaveNoCarProposalBusiness"/>
+            <property name="parent"/>
+            <property name="children"/>
+            <property name="lazy-init"/>
+            <property name="auxiliary;wrappedIn" value="beans@spring@http://www.springframework.org/schema/beans"/>
+            <property name="id" value="saveNoCarProposalBusinessBean"/>
+            <property name="name" value="saveNoCarProposalBusinessBean"/>
+            <property name="primary"/>
+            <property name="autowire"/>
+            <property name="destroy-method"/>
+            <property name="auxiliary;wrapIn" value="2"/>
+            <property name="auxiliary;index" value="10"/>
+            <property name="depends-on"/>
+            <property-collection name="@http://www.springframework.org/schema/beans/property;0">
+                <property name="ref" value="tiananConnector"/>
+                <property name="name" value="connector"/>
+                <property name="auxiliary;index" value="11"/>
+                <property name="auxiliary;wrapIn" value="11"/>
+            </property-collection>
+        </properties>
+    </global-element>
+    <global-element name="Bean" type="http://www.springframework.org/schema/beans/bean" entity-id="Bean#6">
+        <properties>
+            <property name="factory-bean"/>
+            <property name="abstract"/>
+            <property name="scope"/>
+            <property name="init-method"/>
+            <property name="autowire-candidate"/>
+            <property name="factory-method"/>
+            <property name="class" value="com.huibao.esb.insureservice.business.DoPolicyQueryDetailBusiness"/>
+            <property name="parent"/>
+            <property name="children"/>
+            <property name="lazy-init"/>
+            <property name="auxiliary;wrappedIn" value="beans@spring@http://www.springframework.org/schema/beans"/>
+            <property name="id" value="doPolicyQueryDetailBusinessBean"/>
+            <property name="name" value="doPolicyQueryDetailBusinessBean"/>
+            <property name="primary"/>
+            <property name="autowire"/>
+            <property name="destroy-method"/>
+            <property name="auxiliary;wrapIn" value="2"/>
+            <property name="auxiliary;index" value="12"/>
+            <property name="depends-on"/>
+            <property-collection name="@http://www.springframework.org/schema/beans/property;0">
+                <property name="ref" value="tiananQueryConnector"/>
+                <property name="name" value="connector"/>
+                <property name="auxiliary;index" value="13"/>
+                <property name="auxiliary;wrapIn" value="13"/>
+            </property-collection>
+        </properties>
+    </global-element>
+    <global-element name="Bean" type="http://www.springframework.org/schema/beans/bean" entity-id="Bean#7">
+        <properties>
+            <property name="factory-bean"/>
+            <property name="abstract"/>
+            <property name="scope"/>
+            <property name="init-method"/>
+            <property name="autowire-candidate"/>
+            <property name="factory-method"/>
+            <property name="class" value="com.huibao.esb.insureservice.business.TpCarBusiness"/>
+            <property name="parent"/>
+            <property name="children"/>
+            <property name="lazy-init"/>
+            <property name="auxiliary;wrappedIn" value="beans@spring@http://www.springframework.org/schema/beans"/>
+            <property name="id" value="tpCarBusinessBean"/>
+            <property name="name" value="tpCarBusinessBean"/>
+            <property name="primary"/>
+            <property name="autowire"/>
+            <property name="destroy-method"/>
+            <property name="auxiliary;wrapIn" value="2"/>
+            <property name="auxiliary;index" value="14"/>
+            <property name="depends-on"/>
+        </properties>
+    </global-element>
+    <global-element name="Bean" type="http://www.springframework.org/schema/beans/bean" entity-id="Bean#8">
+        <properties>
+            <property name="factory-bean"/>
+            <property name="abstract"/>
+            <property name="scope"/>
+            <property name="init-method"/>
+            <property name="autowire-candidate"/>
+            <property name="factory-method"/>
+            <property name="class" value="com.huibao.esb.insureservice.business.TpCarCallbackBusiness"/>
+            <property name="parent"/>
+            <property name="children"/>
+            <property name="lazy-init"/>
+            <property name="auxiliary;wrappedIn" value="beans@spring@http://www.springframework.org/schema/beans"/>
+            <property name="id" value="tpCarCallbackBusinessBean"/>
+            <property name="name" value="tpCarCallbackBusinessBean"/>
+            <property name="primary"/>
+            <property name="autowire"/>
+            <property name="destroy-method"/>
+            <property name="auxiliary;wrapIn" value="2"/>
+            <property name="auxiliary;index" value="15"/>
+            <property name="depends-on"/>
+        </properties>
+    </global-element>
+    <flow SubFlow="false" name="insureappFlow1" type="http://www.mulesoft.org/schema/mule/core/flow" entity-id="50d32c7c-e831-444d-83f2-c8fc4aa1dfe1">
+        <properties>
+            <property name="initialState"/>
+            <property name="processingStrategy2"/>
+            <property name="processingStrategy"/>
+            <property name="bussinessEventsLabel"/>
+            <property name="tracking:enable-default-events"/>
+            <property name="auxiliary;index" value="16"/>
+        </properties>
+        <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="false" entity-id="compartment-lane#1">
+            <graphicalData x="0" y="0" width="0" height="0"/>
+            <endpoint direction="Inbound" message-exchange-pattern="RequestResponse" name="HTTP" type="http://www.mulesoft.org/schema/mule/http/endpoint" entity-id="HTTP#1">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property name="port" value="18002"/>
+                    <property name="host" value="0.0.0.0"/>
+                    <property name="businessEventsLabel"/>
+                    <property name="followRedirects"/>
+                    <property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/http/endpoint"/>
+                    <property name="keep-alive"/>
+                    <property name="contentType"/>
+                    <property name="disableTransportTransformer"/>
+                    <property name="password"/>
+                    <property name="exchange-pattern" value="request-response"/>
+                    <property name="tracking:enable-default-events"/>
+                    <property name="ref"/>
+                    <property name="transformer-refs"/>
+                    <property name="httpLabel"/>
+                    <property name="address"/>
+                    <property name="path" value="external/insure"/>
+                    <property name="encoding"/>
+                    <property name="responseTransformer-refs"/>
+                    <property name="method"/>
+                    <property name="user"/>
+                    <property name="auxiliary;index" value="17"/>
+                    <property name="responseTimeout" value="60000"/>
+                    <property name="mimeType"/>
+                    <property name="connector-ref"/>
+                </properties>
+            </endpoint>
+            <splitter index="18" name="Choice" type="org.mule.tooling.ui.modules.core.pattern.cbr" entity-id="Choice#1">
+                <graphicalData x="0" y="0" width="0" height="0"/>
+                <properties>
+                    <property-collection name="4c86bb8c-cbe4-49b2-9822-79ae11a35296">
+                        <property name="choice.expression" value="message.inboundProperties['http.relative.path'] == 'tianan/doPolicyQueryDetail'"/>
+                        <property-collection name="choice.attributes">
+                            <property name="expression" value="message.inboundProperties['http.relative.path'] == 'tianan/doPolicyQueryDetail'"/>
+                        </property-collection>
+                    </property-collection>
+                    <property-collection name="862a5b59-22c4-4862-9bc8-2d82b81bf7aa">
+                        <property name="choice.expression" value="message.inboundProperties['http.relative.path'] == 'tianan/saveNoCarProposal'"/>
+                        <property-collection name="choice.attributes">
+                            <property name="expression" value="message.inboundProperties['http.relative.path'] == 'tianan/saveNoCarProposal'"/>
+                        </property-collection>
+                    </property-collection>
+                    <property-collection name="7dd5ff31-861b-4efb-bea2-7b6e75eaf838">
+                        <property name="choice.expression" value="message.inboundProperties['http.relative.path'] == 'tianping/tpcarcallback'"/>
+                        <property-collection name="choice.attributes">
+                            <property name="expression" value="message.inboundProperties['http.relative.path'] == 'tianping/tpcarcallback'"/>
+                        </property-collection>
+                    </property-collection>
+                    <property-collection name="512c0ef5-4626-4217-8bd5-83c85cbac15b">
+                        <property name="choice.expression" value="message.inboundProperties['http.relative.path'] == 'tianping/tpcar'"/>
+                        <property-collection name="choice.attributes">
+                            <property name="expression" value="message.inboundProperties['http.relative.path'] == 'tianping/tpcar'"/>
+                        </property-collection>
+                    </property-collection>
+                </properties>
+                <pattern name="Choice" type="org.mule.tooling.ui.modules.core.pattern.cbr" entity-id="Choice#2"/>
+                <compartment entity-id="compartment#1">
+                    <lane hadOnlyOneElement="false" index="20" isChoiceOtherwiseLane="false" entity-id="862a5b59-22c4-4862-9bc8-2d82b81bf7aa">
+                        <pattern name="JSON to Object" type="http://www.mulesoft.org/schema/mule/json/json-to-object-transformer" entity-id="JSON to Object#1">
+                            <graphicalData x="0" y="0" width="0" height="0"/>
+                            <properties>
+<property name="returnClass" value="com.huibao.esb.insureservice.client.tianan.fake.NoCarProposalSaveRequest"/>
+<property name="ignoreBadInput"/>
+<property name="encoding"/>
+<property name="mapper-ref"/>
+<property name="auxiliary;index" value="20"/>
+<property name="mimeType"/>
+                            </properties>
+                        </pattern>
+                        <pattern name="Object to XML" type="org.mule.tooling.ui.modules.core.pattern.objectToXmlTransformer" entity-id="Object to XML#1">
+                            <graphicalData x="0" y="0" width="0" height="0"/>
+                            <properties>
+<property name="returnClass"/>
+<property name="ignoreBadInput"/>
+<property name="driverClass"/>
+<property name="encoding"/>
+<property name="acceptMuleMessage"/>
+<property name="auxiliary;index" value="21"/>
+<property name="mimeType"/>
+<property-collection name="@http://www.mulesoft.org/schema/mule/xml/alias;0">
+    <property name="name" value="NoCarProposalSaveRequest"/>
+    <property name="class" value="com.huibao.esb.insureservice.client.tianan.fake.NoCarProposalSaveRequest"/>
+    <property name="auxiliary;index" value="22"/>
+    <property name="auxiliary;wrapIn" value="22"/>
+</property-collection>
+<property-collection name="@http://www.mulesoft.org/schema/mule/xml/alias;1">
+    <property name="name" value="insuredDataDto"/>
+    <property name="class" value="com.huibao.esb.insureservice.client.tianan.fake.InsuredDataDto"/>
+    <property name="auxiliary;index" value="23"/>
+    <property name="auxiliary;wrapIn" value="23"/>
+</property-collection>
+<property-collection name="@http://www.mulesoft.org/schema/mule/xml/alias;2">
+    <property name="name" value="benfcDataDto"/>
+    <property name="class" value="com.huibao.esb.insureservice.client.tianan.fake.BenfcDataDto"/>
+    <property name="auxiliary;index" value="24"/>
+    <property name="auxiliary;wrapIn" value="24"/>
+</property-collection>
+                            </properties>
+                        </pattern>
+                        <pattern name="saveNoCarProposalBusiness" type="http://www.mulesoft.org/schema/mule/core/component" entity-id="Java#1">
+                            <graphicalData x="0" y="0" width="0" height="0"/>
+                            <properties>
+<property name="class"/>
+<property name="auxiliary;index" value="25"/>
+<property-collection name="@http://www.mulesoft.org/schema/mule/core/spring-object;0">
+    <property name="bean" value="saveNoCarProposalBusinessBean"/>
+    <property name="auxiliary;index" value="26"/>
+    <property name="auxiliary;wrapIn" value="26"/>
+</property-collection>
+                            </properties>
+                        </pattern>
+                        <pattern name="XML to Object" type="http://www.mulesoft.org/schema/mule/xml/xml-to-object-transformer" entity-id="XML to Object#1">
+                            <graphicalData x="0" y="0" width="0" height="0"/>
+                            <properties>
+<property name="returnClass" value="com.huibao.esb.insureservice.client.tianan.fake.NoCarProposalSaveResponse"/>
+<property name="ignoreBadInput"/>
+<property name="driverClass"/>
+<property name="encoding"/>
+<property name="auxiliary;index" value="27"/>
+<property name="mimeType"/>
+<property-collection name="@http://www.mulesoft.org/schema/mule/xml/alias;0">
+    <property name="name" value="NoCarProposalSaveResponse"/>
+    <property name="class" value="com.huibao.esb.insureservice.client.tianan.fake.NoCarProposalSaveResponse"/>
+    <property name="auxiliary;index" value="28"/>
+    <property name="auxiliary;wrapIn" value="28"/>
+</property-collection>
+                            </properties>
+                        </pattern>
+                        <pattern name="Object to JSON" type="http://www.mulesoft.org/schema/mule/json/object-to-json-transformer" entity-id="Object to JSON#1">
+                            <graphicalData x="0" y="0" width="0" height="0"/>
+                            <properties>
+<property name="sourceClass"/>
+<property name="returnClass"/>
+<property name="ignoreBadInput"/>
+<property name="encoding"/>
+<property name="mapper-ref"/>
+<property name="auxiliary;index" value="29"/>
+<property name="mimeType"/>
+                            </properties>
+                        </pattern>
+                    </lane>
+                    <lane hadOnlyOneElement="false" index="31" isChoiceOtherwiseLane="false" entity-id="4c86bb8c-cbe4-49b2-9822-79ae11a35296">
+                        <pattern name="JSON to Object" type="http://www.mulesoft.org/schema/mule/json/json-to-object-transformer" entity-id="JSON to Object#2">
+                            <graphicalData x="0" y="0" width="0" height="0"/>
+                            <properties>
+<property name="returnClass" value="com.huibao.esb.insureservice.client.tianan.fake.PolicyQueryDetailRequest"/>
+<property name="ignoreBadInput"/>
+<property name="encoding"/>
+<property name="mapper-ref"/>
+<property name="auxiliary;index" value="31"/>
+<property name="mimeType"/>
+                            </properties>
+                        </pattern>
+                        <pattern name="Object to XML" type="org.mule.tooling.ui.modules.core.pattern.objectToXmlTransformer" entity-id="Object to XML#2">
+                            <graphicalData x="0" y="0" width="0" height="0"/>
+                            <properties>
+<property name="returnClass"/>
+<property name="ignoreBadInput"/>
+<property name="driverClass"/>
+<property name="encoding"/>
+<property name="acceptMuleMessage"/>
+<property name="auxiliary;index" value="32"/>
+<property name="mimeType"/>
+<property-collection name="@http://www.mulesoft.org/schema/mule/xml/alias;0">
+    <property name="name" value="PolicyQueryDetailRequest"/>
+    <property name="class" value="com.huibao.esb.insureservice.client.tianan.fake.PolicyQueryDetailRequest"/>
+    <property name="auxiliary;index" value="33"/>
+    <property name="auxiliary;wrapIn" value="33"/>
+</property-collection>
+                            </properties>
+                        </pattern>
+                        <pattern name="doPolicyQueryDetailBusiness" type="http://www.mulesoft.org/schema/mule/core/component" entity-id="Java#2">
+                            <graphicalData x="0" y="0" width="0" height="0"/>
+                            <properties>
+<property name="class"/>
+<property name="auxiliary;index" value="34"/>
+<property-collection name="@http://www.mulesoft.org/schema/mule/core/spring-object;0">
+    <property name="bean" value="doPolicyQueryDetailBusinessBean"/>
+    <property name="auxiliary;index" value="35"/>
+    <property name="auxiliary;wrapIn" value="35"/>
+</property-collection>
+                            </properties>
+                        </pattern>
+                        <pattern name="XML to Object" type="http://www.mulesoft.org/schema/mule/xml/xml-to-object-transformer" entity-id="XML to Object#2">
+                            <graphicalData x="0" y="0" width="0" height="0"/>
+                            <properties>
+<property name="returnClass" value="com.huibao.esb.insureservice.client.tianan.fake.PolicyQueryDetailResponse"/>
+<property name="ignoreBadInput"/>
+<property name="driverClass"/>
+<property name="encoding"/>
+<property name="auxiliary;index" value="36"/>
+<property name="mimeType"/>
+<property-collection name="@http://www.mulesoft.org/schema/mule/xml/alias;0">
+    <property name="name" value="PolicyQueryDetailResponse"/>
+    <property name="class" value="com.huibao.esb.insureservice.client.tianan.fake.PolicyQueryDetailResponse"/>
+    <property name="auxiliary;index" value="37"/>
+    <property name="auxiliary;wrapIn" value="37"/>
+</property-collection>
+<property-collection name="@http://www.mulesoft.org/schema/mule/xml/alias;1">
+    <property name="name" value="insuredDataDto"/>
+    <property name="class" value="com.huibao.esb.insureservice.client.tianan.fake.InsuredDataDto"/>
+    <property name="auxiliary;index" value="38"/>
+    <property name="auxiliary;wrapIn" value="38"/>
+</property-collection>
+<property-collection name="@http://www.mulesoft.org/schema/mule/xml/alias;2">
+    <property name="name" value="itemKindDataDto"/>
+    <property name="class" value="com.huibao.esb.insureservice.client.tianan.fake.ItemKindDataDto"/>
+    <property name="auxiliary;index" value="39"/>
+    <property name="auxiliary;wrapIn" value="39"/>
+</property-collection>
+<property-collection name="@http://www.mulesoft.org/schema/mule/xml/alias;3">
+    <property name="name" value="riskClauseDataDto"/>
+    <property name="class" value="com.huibao.esb.insureservice.client.tianan.fake.RiskClauseDataDto"/>
+    <property name="auxiliary;index" value="40"/>
+    <property name="auxiliary;wrapIn" value="40"/>
+</property-collection>
+<property-collection name="@http://www.mulesoft.org/schema/mule/xml/alias;4">
+    <property name="name" value="benfcDataDto"/>
+    <property name="class" value="com.huibao.esb.insureservice.client.tianan.fake.BenfcDataDto"/>
+    <property name="auxiliary;index" value="41"/>
+    <property name="auxiliary;wrapIn" value="41"/>
+</property-collection>
+<property-collection name="@http://www.mulesoft.org/schema/mule/xml/alias;5">
+    <property name="name" value="engageDataDto"/>
+    <property name="class" value="com.huibao.esb.insureservice.client.tianan.fake.EngageDataDto"/>
+    <property name="auxiliary;index" value="42"/>
+    <property name="auxiliary;wrapIn" value="42"/>
+</property-collection>
+                            </properties>
+                        </pattern>
+                        <pattern name="Object to JSON" type="http://www.mulesoft.org/schema/mule/json/object-to-json-transformer" entity-id="Object to JSON#2">
+                            <graphicalData x="0" y="0" width="0" height="0"/>
+                            <properties>
+<property name="sourceClass"/>
+<property name="returnClass"/>
+<property name="ignoreBadInput"/>
+<property name="encoding"/>
+<property name="mapper-ref"/>
+<property name="auxiliary;index" value="43"/>
+<property name="mimeType"/>
+                            </properties>
+                        </pattern>
+                    </lane>
+                    <lane hadOnlyOneElement="false" index="45" isChoiceOtherwiseLane="false" entity-id="512c0ef5-4626-4217-8bd5-83c85cbac15b">
+                        <unknown description="false" index="45" entity-id="unknown#1">
+                            <graphicalData x="0" y="0" width="0" height="0"/>
+                            <content>&lt;json:json-to-xml-transformer xmlns:json=&quot;http://www.mulesoft.org/schema/mule/json&quot; xmlns:doc=&quot;http://www.mulesoft.org/schema/mule/documentation&quot; doc:name=&quot;JSON to XML&quot;/&gt;</content>
+                        </unknown>
+                        <pattern name="tpCarBusinessBean" type="http://www.mulesoft.org/schema/mule/core/component" entity-id="Java#3">
+                            <graphicalData x="0" y="0" width="0" height="0"/>
+                            <properties>
+<property name="class"/>
+<property name="auxiliary;index" value="46"/>
+<property-collection name="@http://www.mulesoft.org/schema/mule/core/spring-object;0">
+    <property name="bean" value="tpCarBusinessBean"/>
+    <property name="auxiliary;index" value="47"/>
+    <property name="auxiliary;wrapIn" value="47"/>
+</property-collection>
+                            </properties>
+                        </pattern>
+                        <pattern name="Byte Array to String" type="http://www.mulesoft.org/schema/mule/core/byte-array-to-string-transformer" entity-id="Byte Array to String#1">
+                            <graphicalData x="0" y="0" width="0" height="0"/>
+                            <properties>
+<property name="returnClass"/>
+<property name="ignoreBadInput"/>
+<property name="encoding" value="GBK"/>
+<property name="auxiliary;index" value="48"/>
+<property name="mimeType"/>
+                            </properties>
+                        </pattern>
+                        <endpoint direction="Outbound" message-exchange-pattern="RequestResponse" name="HTTP" type="http://www.mulesoft.org/schema/mule/http/endpoint" entity-id="HTTP#2">
+                            <graphicalData x="0" y="0" width="0" height="0"/>
+                            <properties>
+<property name="port"/>
+<property name="host"/>
+<property name="businessEventsLabel"/>
+<property name="followRedirects"/>
+<property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/http/endpoint"/>
+<property name="keep-alive"/>
+<property name="contentType" value="text/xml"/>
+<property name="disableTransportTransformer"/>
+<property name="password"/>
+<property name="exchange-pattern" value="request-response"/>
+<property name="tracking:enable-default-events"/>
+<property name="ref"/>
+<property name="transformer-refs"/>
+<property name="httpLabel"/>
+<property name="address" value="${tianping.insure.url}"/>
+<property name="path"/>
+<property name="encoding" value="GBK"/>
+<property name="responseTransformer-refs"/>
+<property name="method" value="POST"/>
+<property name="user"/>
+<property name="auxiliary;index" value="49"/>
+<property name="responseTimeout" value="60000"/>
+<property name="mimeType"/>
+<property name="connector-ref"/>
+                            </properties>
+                        </endpoint>
+                        <unknown description="false" index="50" entity-id="unknown#2">
+                            <graphicalData x="0" y="0" width="0" height="0"/>
+                            <content>&lt;json:xml-to-json-transformer xmlns:json=&quot;http://www.mulesoft.org/schema/mule/json&quot; xmlns:doc=&quot;http://www.mulesoft.org/schema/mule/documentation&quot; doc:name=&quot;XML to JSON&quot;/&gt;</content>
+                        </unknown>
+                    </lane>
+                    <lane hadOnlyOneElement="false" index="52" isChoiceOtherwiseLane="false" entity-id="7dd5ff31-861b-4efb-bea2-7b6e75eaf838">
+                        <unknown description="false" index="52" entity-id="unknown#3">
+                            <graphicalData x="0" y="0" width="0" height="0"/>
+                            <content>&lt;json:xml-to-json-transformer xmlns:json=&quot;http://www.mulesoft.org/schema/mule/json&quot; xmlns:doc=&quot;http://www.mulesoft.org/schema/mule/documentation&quot; doc:name=&quot;XML to JSON&quot;/&gt;</content>
+                        </unknown>
+                        <endpoint direction="Outbound" message-exchange-pattern="RequestResponse" name="HTTP" type="http://www.mulesoft.org/schema/mule/http/endpoint" entity-id="HTTP#3">
+                            <graphicalData x="0" y="0" width="0" height="0"/>
+                            <properties>
+<property name="port"/>
+<property name="host"/>
+<property name="businessEventsLabel"/>
+<property name="followRedirects"/>
+<property name="org.mule.tooling.ui.modules.core.widgets.meta.ModeAttribute" value="http://www.mulesoft.org/schema/mule/http/endpoint"/>
+<property name="keep-alive"/>
+<property name="contentType" value="application/json"/>
+<property name="disableTransportTransformer"/>
+<property name="password"/>
+<property name="exchange-pattern" value="request-response"/>
+<property name="tracking:enable-default-events"/>
+<property name="ref"/>
+<property name="transformer-refs"/>
+<property name="httpLabel"/>
+<property name="address" value="${tianping.insure.callbackurl}"/>
+<property name="path"/>
+<property name="encoding" value="GBK"/>
+<property name="responseTransformer-refs"/>
+<property name="method" value="POST"/>
+<property name="user"/>
+<property name="auxiliary;index" value="53"/>
+<property name="responseTimeout" value="60000"/>
+<property name="mimeType"/>
+<property name="connector-ref"/>
+                            </properties>
+                        </endpoint>
+                        <unknown description="false" index="54" entity-id="unknown#4">
+                            <graphicalData x="0" y="0" width="0" height="0"/>
+                            <content>&lt;json:json-to-xml-transformer xmlns:json=&quot;http://www.mulesoft.org/schema/mule/json&quot; xmlns:doc=&quot;http://www.mulesoft.org/schema/mule/documentation&quot; doc:name=&quot;JSON to XML&quot;/&gt;</content>
+                        </unknown>
+                        <pattern name="tpCarCallbackBusinessBean" type="http://www.mulesoft.org/schema/mule/core/component" entity-id="Java#4">
+                            <graphicalData x="0" y="0" width="0" height="0"/>
+                            <properties>
+<property name="class"/>
+<property name="auxiliary;index" value="55"/>
+<property-collection name="@http://www.mulesoft.org/schema/mule/core/spring-object;0">
+    <property name="bean" value="tpCarCallbackBusinessBean"/>
+    <property name="auxiliary;index" value="56"/>
+    <property name="auxiliary;wrapIn" value="56"/>
+</property-collection>
+                            </properties>
+                        </pattern>
+                        <pattern name="Byte Array to String" type="http://www.mulesoft.org/schema/mule/core/byte-array-to-string-transformer" entity-id="Byte Array to String#2">
+                            <graphicalData x="0" y="0" width="0" height="0"/>
+                            <properties>
+<property name="returnClass"/>
+<property name="ignoreBadInput"/>
+<property name="encoding" value="GBK"/>
+<property name="auxiliary;index" value="57"/>
+<property name="mimeType"/>
+                            </properties>
+                        </pattern>
+                    </lane>
+                    <lane hadOnlyOneElement="false" index="0" isChoiceOtherwiseLane="true" entity-id="7fc372d2-8621-492f-9fe1-c97dca1150ec"/>
+                </compartment>
+            </splitter>
+        </lane>
+    </flow>
+</mule-configuration>
